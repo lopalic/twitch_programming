@@ -1,0 +1,8 @@
+Requirements
+
+1. install nodejs
+2. install npm
+
+Setup
+
+1. run npm install tmi.js
