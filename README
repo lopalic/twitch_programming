@@ -2,6 +2,9 @@ Requirements
 
 1. install nodejs
 2. install npm
+3. setup TP_BOT_USERNAME, TP_CHANNEL_NAME and TP_OAUTH_TOKEN environment variables
+
+Note: the constants are not prefixed with TP_ in the docs, they are here to avoid colision with other ENV vars
 
 Setup
 
