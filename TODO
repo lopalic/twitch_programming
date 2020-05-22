@@ -1,0 +1,10 @@
+# initial implementation
+1. add listener bot for twitch chat
+2. setup commands which can be executed(loop, conditions, etc.)
+3. interract with the editor
+4. run tests automatically
+
+# improvements:
+0. try to make sure nothing malicious can happen
+1. allow selection of problem
+2. setup command parsing
