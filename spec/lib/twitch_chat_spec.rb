@@ -7,10 +7,10 @@ describe TwitchChat do
     allow(ENV).to receive(:[]).with('BOT_USERNAME').and_return('fake name')
     allow(ENV).to receive(:[]).with('CHANNEL').and_return('fake channel')
 
-    allow_any_instance_of(TwitchChat::Listener).to receive(:new).
-      and_call_original
-    allow_any_instance_of(TwitchChat::Listener).to receive(:socket).
-      and_return(fake_socket)
+    allow_any_instance_of(TwitchChat::Listener).to receive(:new)
+      .and_call_original
+    allow_any_instance_of(TwitchChat::Listener).to receive(:socket)
+      .and_return(fake_socket)
 
     allow_any_instance_of(TCPSocket).to receive(:new).and_return(fake_socket)
   end

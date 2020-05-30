@@ -33,3 +33,6 @@ Style/HashTransformValues:
 
 Style/SlicingWithRange:
   Enabled: true
+
+Metrics/BlockLength:
+  Max: 100
