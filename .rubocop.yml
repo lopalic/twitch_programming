@@ -36,3 +36,6 @@ Style/SlicingWithRange:
 
 Metrics/BlockLength:
   Max: 100
+ 
+Metrics/MethodLength:
+  Max: 100
