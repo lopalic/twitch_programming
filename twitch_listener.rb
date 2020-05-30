@@ -22,6 +22,8 @@ class TwitchListener
 
     # log whatever is in the chat
     while line = socket.gets
+      # keep the listener alive
+      socket.puts("PONG :tmi.twitch.tv") if line ~= /PING :tmi.twitch.tv/
       puts line
     end
 
