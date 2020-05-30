@@ -1,10 +1,10 @@
 # initial implementation
-1. add listener bot for twitch chat
-2. setup commands which can be executed(loop, conditions, etc.)
+1. add listener bot for twitch chat # DONE!
+2. setup commands which can be executed(loop, conditions, etc.) # might not be needed if restricted shell works
 3. interract with the editor(write stuff in)
 4. run tests automatically
 
 # improvements:
-0. try to make sure nothing malicious can happen
+0. try to make sure nothing malicious can happen # might not be needed if restricted shell works
 1. allow selection of problem
-2. setup command parsing or even pseudocode parsing
+2. setup command parsing or even pseudocode parsing # might not be needed if restricted shell works

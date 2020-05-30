@@ -4,7 +4,6 @@ module TwitchChat
   class Listener
     attr_reader :socket
 
-    # initialize the listener on twitch IRC server
     def initialize
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
     end
@@ -20,13 +19,21 @@ module TwitchChat
 
     def listen
       login
-      # log whatever is in the chat
       while (line = socket.gets)
-        # keep the listener alive
-        if line =~ /PING :tmi.twitch.tv/
+        case line
+        when /PING :tmi.twitch.tv/
           socket.puts('PONG :tmi.twitch.tv')
           puts 'Sent PONG response to keep the connection alive...'
+        when /\!write\ (.*)/
+          puts Regexp.last_match(1)
+        when /\!test/
+          # TODO: implement running the test actually :D
+          puts 'Running the test for this program...'
+        else
+          puts 'No command detected, regular chat...'
         end
+
+        # TODO: remove later, logging purposes only now
         puts line
       end
     ensure
