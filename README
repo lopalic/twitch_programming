@@ -5,4 +5,10 @@ Requirements
 
 Setup
 
-1. run ruby twitch_listener.rb
+1. execute ruby twitch_listener.rb
+
+Testing/development
+
+1. run bundle config set path '.bundle'
+2. run bundle install
+3. run rubocop and rspec using bundle exec rubocop and bundle exec rspec
