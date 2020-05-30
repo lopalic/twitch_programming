@@ -1,13 +1,15 @@
 require 'socket'
 require 'lib/vim_writer'
+require 'lib/test_runner'
 
 module TwitchChat
   class Listener
-    attr_reader :socket, :vim_writer
+    attr_reader :socket, :vim_writer, :test_runner
 
     def initialize
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
       @vim_writer = TwitchChat::VimWriter.new
+      @test_runner = TwitchChat::TestRunner.new
     end
 
     def login
@@ -37,10 +39,9 @@ module TwitchChat
         when /\!rmline\ (\d+)/
           vim_writer.rmline(Regexp.last_match(1))
         when /\!test/
-          # TODO: implement running the test actually :D
-          puts 'Running the test for this program...'
+          test_runner.run_test
         else
-          puts 'No command detected, regular chat...'
+          next
         end
       end
     ensure
