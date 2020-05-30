@@ -1,6 +1,6 @@
-1. introduce module for writing into vim
-2. replace !write
-  add - !prepend, !append, !rmline
+1. replace !write
+  add - !prepend, !append, !above, !below, !rmline
   automatically center the last edited line?
-3. secure the shell so nothing bad can happen
-4. write the !test module which will actually make this usable
+  actually start using the VimWriter
+2. secure the shell so nothing bad can happen
+3. write the !test module which will actually make this usable
