@@ -3,10 +3,11 @@ require 'lib/vim_writer'
 
 module TwitchChat
   class Listener
-    attr_reader :socket
+    attr_reader :socket, :vim_writer
 
     def initialize
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
+      @vim_writer = TwitchChat::VimWriter.new
     end
 
     def login
@@ -25,20 +26,16 @@ module TwitchChat
         when /PING :tmi.twitch.tv/
           socket.puts('PONG :tmi.twitch.tv')
           puts 'Sent PONG response to keep the connection alive...'
-        when /\!write\ (.*)/
-          puts Regexp.last_match(1)
-        when /\!preped\ (\d+)\ ?(.*)/
-          # TODO: do the prepend
+        when /\!prepend\ (\d+)\ ?(.*)/
+          vim_writer.prepend(Regexp.last_match(1), Regexp.last_match(2))
         when /\!append\ (\d+)\ ?(.*)/
-          # TODO: do the append
+          vim_writer.append(Regexp.last_match(1), Regexp.last_match(2))
         when /\!above\ (\d+)\ ?(.*)/
-          # TODO: do the insert above
+          vim_writer.above(Regexp.last_match(1), Regexp.last_match(2))
         when /\!below\ (\d+)\ ?(.*)/
-          # TODO: do the insert below
+          vim_writer.below(Regexp.last_match(1), Regexp.last_match(2))
         when /\!rmline\ (\d+)/
-          # TODO: do the insert below
-        when /\!start_over/
-          # TODO: do the insert below
+          vim_writer.rmline(Regexp.last_match(1))
         when /\!test/
           # TODO: implement running the test actually :D
           puts 'Running the test for this program...'

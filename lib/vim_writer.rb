@@ -5,7 +5,7 @@ module TwitchChat
     attr_reader :file
 
     def initialize
-      @file = '~/twitch_programs.rb'
+      @file = '~/Desktop/twitch_programs.rb'
     end
 
     def prepend(line_num, text)
@@ -17,6 +17,7 @@ module TwitchChat
         puts stderr
         puts wait_thr.pid
       end
+      auto_center(line_num)
     end
 
     def append(line_num, text)
@@ -28,10 +29,11 @@ module TwitchChat
         puts stderr
         puts wait_thr.pid
       end
+      auto_center(line_num)
     end
 
     def above(line_num, text)
-      command = "vim -c \"#{line_num - 1} s/^/\r#{text}/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num.to_i - 1} s/^/\r#{text}/\" -c \"wq\" #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
         puts stdin
@@ -39,6 +41,7 @@ module TwitchChat
         puts stderr
         puts wait_thr.pid
       end
+      auto_center(line_num)
     end
 
     def below(line_num, text)
@@ -50,6 +53,7 @@ module TwitchChat
         puts stderr
         puts wait_thr.pid
       end
+      auto_center(line_num)
     end
 
     def rmline(line_num)
@@ -61,12 +65,18 @@ module TwitchChat
         puts stderr
         puts wait_thr.pid
       end
+      auto_center(line_num)
     end
 
     def auto_center(line_num)
-      # TODO: implement if needed
+      reload_vim = 'tmux send-keys -t chat_session:coding.right \":e\" Enter'
+      refocus = "tmux send-keys -t chat_session:coding.right \"#{line_num}zz\" Enter"
+      Open3.popen3(reload_vim) { |stdin, stdout, stderr, wait_thr| }
+      Open3.popen3(refocus) { |stdin, stdout, stderr, wait_thr| }
     end
 
+    # NOTE: ONLY TO BE USED ONCE PROBLEM SELECTION IS POSSIBLE!
+    # would have catastrophic results!
     def start_over
       command = "echo '' > #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
