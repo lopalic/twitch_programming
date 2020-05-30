@@ -1,6 +1,6 @@
 require 'twitch_chat'
 
-describe 'TwitchChat' do
+describe TwitchChat do
   before do
     # ENV variables stubs
     allow(ENV).to receive(:[]).with('BOT_OAUTH_TOKEN').and_return('fake token')
