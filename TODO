@@ -1,5 +1,5 @@
 1. replace !write
-  add - !prepend, !append, !above, !below, !rmline
+  add - !prepend, !append, !above, !below, !rmline, !start_over
   automatically center the last edited line?
   actually start using the VimWriter
 2. secure the shell so nothing bad can happen

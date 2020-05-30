@@ -1,4 +1,5 @@
 require 'socket'
+require 'lib/vim_writer'
 
 module TwitchChat
   class Listener
@@ -26,15 +27,24 @@ module TwitchChat
           puts 'Sent PONG response to keep the connection alive...'
         when /\!write\ (.*)/
           puts Regexp.last_match(1)
+        when /\!preped\ (\d+)\ ?(.*)/
+          # TODO: do the prepend
+        when /\!append\ (\d+)\ ?(.*)/
+          # TODO: do the append
+        when /\!above\ (\d+)\ ?(.*)/
+          # TODO: do the insert above
+        when /\!below\ (\d+)\ ?(.*)/
+          # TODO: do the insert below
+        when /\!rmline\ (\d+)/
+          # TODO: do the insert below
+        when /\!start_over/
+          # TODO: do the insert below
         when /\!test/
           # TODO: implement running the test actually :D
           puts 'Running the test for this program...'
         else
           puts 'No command detected, regular chat...'
         end
-
-        # TODO: remove later, logging purposes only now
-        puts line
       end
     ensure
       # don't leave the listener open
