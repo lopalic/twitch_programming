@@ -51,16 +51,16 @@ module TwitchChat
           vim_writer.rmline(Regexp.last_match(1))
         when /\!test/
           if test_runner.run_test(problem_number)
-            puts "SOLVED!"
+            puts 'SOLVED!'
             find_first_unsolved
 
-            #reset editor
+            # reset editor
             vim_writer.start_over
 
             # print the new problem
             TwitchChat::Problem::Fetcher.fetch(problem_number)
           end
-        when/\!problem/
+        when /\!problem/
           TwitchChat::Problem::Fetcher.fetch(problem_number)
         else
           next

@@ -6,11 +6,11 @@ module TwitchChat
       def self.fetch(problem_number)
         # fetch problem
         curl_command = "curl https://projecteuler.net/problem=#{problem_number}"
-        _stdin, stdout, _stderr, _wait_thr = Open3.popen3(curl_command)
+        _stdin, curl_out, _stderr, _wait_thr = Open3.popen3(curl_command)
 
         # parse only the problem content
-        stdout.readlines.map(&:chomp).join('')[/<div class=\"problem_content\" role=\"problem\">(.*?)<\/div>/m]
-        to_print = Regexp.last_match(1).gsub(/\/n|<\/?p>/, '')
+        curl_out.readlines.map(&:chomp).join('')[%r{<div class=\"problem_content\" role=\"problem\">(.*?)</div>}m]
+        to_print = Regexp.last_match(1).gsub(%r{/n|</?p>}, '')
 
         # print the output on the screen
         print_command = "tmux send-keys -t chat_session:coding.left \"echo #{to_print}\" Enter"

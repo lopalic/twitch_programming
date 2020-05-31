@@ -16,12 +16,14 @@ module TwitchChat
       # NOTE: does not work properly at the moment
       # stdout is empty :(
       puts stdout.readlines.last
-      solved = TwitchChat::Problem::Checker.
-                 check_solution(problem_number, stdout.readlines.last)
-      if solved
-        writer = TwitchChat::VimWriter.new
-        writer.append(problem_number, 'SOLVED')
-      end
+      solved = TwitchChat::Problem::Checker
+               .check_solution(problem_number, stdout.readlines.last)
+
+      return false unless solved
+
+      writer = TwitchChat::VimWriter.new
+      writer.append(problem_number, 'SOLVED')
+      solved
     end
   end
 end
