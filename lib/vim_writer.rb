@@ -4,8 +4,8 @@ module TwitchChat
   class VimWriter
     attr_reader :file
 
-    def initialize
-      @file = '~/Desktop/twitch_programs.rb'
+    def initialize(file = '~/Desktop/twitch_programs.rb')
+      @file = file
     end
 
     def prepend(line_num, text)

@@ -21,7 +21,7 @@ module TwitchChat
 
       return false unless solved
 
-      writer = TwitchChat::VimWriter.new
+      writer = TwitchChat::VimWriter.new('~/Desktop/solutions.txt')
       writer.append(problem_number, 'SOLVED')
       solved
     end
