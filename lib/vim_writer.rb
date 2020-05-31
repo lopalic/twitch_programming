@@ -8,9 +8,8 @@ module TwitchChat
       @file = file
     end
 
-    # NOTE: fix, actually does what above does...
     def prepend(line_num, text)
-      command = "vim -c \"#{line_num} s/^\(.*\)/\1#{text}/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num} s/^\(.*\)/\1#{text.chomp}/\" -c \"wq\" #{@file}"
       puts command
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
@@ -35,7 +34,7 @@ module TwitchChat
     end
 
     def above(line_num, text)
-      command = "vim -c \"#{line_num.to_i - 1} s/^/\r#{text}/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num.to_i - 1} s/^/\r#{text.chomp}/\" -c \"wq\" #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
         puts stdin
@@ -47,7 +46,7 @@ module TwitchChat
     end
 
     def below(line_num, text)
-      command = "vim -c \"#{line_num} s/$/\r#{text}/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num} s/$/\r#{text.chomp}/\" -c \"wq\" #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
         puts stdin
