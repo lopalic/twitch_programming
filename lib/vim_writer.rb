@@ -75,8 +75,6 @@ module TwitchChat
       Open3.popen3(refocus) { |stdin, stdout, stderr, wait_thr| }
     end
 
-    # NOTE: ONLY TO BE USED ONCE PROBLEM SELECTION IS POSSIBLE!
-    # would have catastrophic results!
     def start_over
       command = "echo '' > #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|

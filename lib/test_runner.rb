@@ -1,4 +1,6 @@
 require 'open3'
+require 'lib/problem'
+require 'lib/vim_writer'
 
 module TwitchChat
   class TestRunner
@@ -8,14 +10,17 @@ module TwitchChat
       @file = '~/Desktop/twitch_programs.rb'
     end
 
-    def run_test
+    def run_test(problem_number)
       command = "tmux send-keys -t chat_session:coding.left \"ruby #{@file}\" Enter"
-      Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-        # TODO: remove, for testing purposes
-        puts stdin
-        puts stdout
-        puts stderr
-        puts wait_thr.pid
+      _stdin, stdout, _stderr, _wait_thr = Open3.popen3(command)
+      # NOTE: does not work properly at the moment
+      # stdout is empty :(
+      puts stdout.readlines.last
+      solved = TwitchChat::Problem::Checker.
+                 check_solution(problem_number, stdout.readlines.last)
+      if solved
+        writer = TwitchChat::VimWriter.new
+        writer.append(problem_number, 'SOLVED')
       end
     end
   end
