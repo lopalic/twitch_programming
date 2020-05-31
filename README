@@ -1,14 +1,19 @@
-Requirements
+# Requirements
 
 1. Have Ruby installed
 2. setup BOT_USERNAME, CHANNEL and BOT_OAUTH_TOKEN environment variables
 
-Setup
+# Setup/running
 
-1. execute ruby twitch_listener.rb
+```
+ruby twitch_listener.rb
+```
 
-Testing/development
+# Testing/development
 
-1. run bundle config set path '.bundle'
-2. run bundle install
-3. run rubocop and rspec using bundle exec rubocop and bundle exec rspec
+```
+bundle config set path '.bundle'
+bundle install
+bundle exec rubocop
+bundle exec rspec
+```
