@@ -34,7 +34,7 @@ module TwitchChat
     end
 
     def above(line_num, text)
-      command = "vim -c \"#{line_num.to_i - 1} s/^/\r#{text.chomp}/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num.to_i - 1} s/$/\r#{text.chomp}/\" -c \"wq\" #{@file}"
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
         puts stdin
