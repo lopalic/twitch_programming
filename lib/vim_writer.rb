@@ -10,7 +10,8 @@ module TwitchChat
 
     # NOTE: fix, actually does what above does...
     def prepend(line_num, text)
-      command = "vim -c \"#{line_num} s\/\^\(.*\)\/\\1#{text}\/\" -c \"wq\" #{@file}"
+      command = "vim -c \"#{line_num} s/^\(.*\)/\1#{text}/\" -c \"wq\" #{@file}"
+      puts command
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         # TODO: remove, for testing purposes
         puts stdin
